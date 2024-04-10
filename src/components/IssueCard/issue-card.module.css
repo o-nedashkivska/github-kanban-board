@@ -1,0 +1,31 @@
+.card {
+  width: 90%;
+  border: 1px solid black;
+  font-weight: 600;
+}
+
+.card::before {
+  position: absolute;
+  top: 1px;
+  bottom: 1px;
+  left: -4px;
+  right: -4px;
+  display: block;
+  border: 1px solid black;
+  border-radius: 8px;
+  content: "";
+  transform: rotate(0.1deg);
+}
+
+.card::after {
+  position: absolute;
+  top: 1px;
+  bottom: 1px;
+  left: -4px;
+  right: -4px;
+  display: block;
+  border: 1px solid black;
+  border-radius: 8px;
+  content: "";
+  transform: rotate(-0.7deg);
+}
