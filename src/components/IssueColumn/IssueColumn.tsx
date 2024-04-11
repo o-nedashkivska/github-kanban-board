@@ -25,9 +25,11 @@ const IssueColumn: React.FC<IssueColumnProps> = ({
         vertical
         className={styles["column__content"]}
       >
-        {issues.map((issue) => (
-          <IssueCard key={issue.id} {...issue} />
-        ))}
+        {issues.length === 0 ? (
+          <Title level={4}>No issues</Title>
+        ) : (
+          issues.map((issue) => <IssueCard key={issue.id} {...issue} />)
+        )}
       </Flex>
     </Col>
   );
