@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { Octokit } from "octokit";
-import { OctokitResponse } from "@octokit/types";
 
 const octokit = new Octokit({
-  auth: process.env.GH_TOKEN,
+  auth: "token",
 });
 
 const useOctokit = (owner: string, repo: string) => {
-  const [data, setData] = useState<OctokitResponse<any>>();
+  const [data, setData] = useState<Array<any>>();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
 
@@ -21,7 +20,7 @@ const useOctokit = (owner: string, repo: string) => {
           { owner, repo }
         );
 
-        setData(githubData);
+        setData(githubData.data);
       } catch (e: any) {
         setError(e.message || "Failed to get data.");
       } finally {

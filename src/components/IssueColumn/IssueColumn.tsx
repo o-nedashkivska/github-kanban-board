@@ -5,12 +5,14 @@ import styles from "./issues-column.module.css";
 
 interface IssueColumnProps {
   title: string;
+  issues: Array<any>;
 }
 
 const { Title } = Typography;
 
 const IssueColumn: React.FC<IssueColumnProps> = ({
   title,
+  issues,
 }: IssueColumnProps) => {
   return (
     <Col span={6} className={styles.column}>
@@ -23,9 +25,9 @@ const IssueColumn: React.FC<IssueColumnProps> = ({
         vertical
         className={styles["column__content"]}
       >
-        <IssueCard />
-        <IssueCard />
-        <IssueCard />
+        {issues.map((issue) => (
+          <IssueCard key={issue.id} {...issue} />
+        ))}
       </Flex>
     </Col>
   );
