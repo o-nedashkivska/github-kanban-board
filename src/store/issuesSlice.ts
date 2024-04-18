@@ -1,19 +1,37 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchIssuesData } from "./thunks";
+import { fetchIssuesDataByStatus } from "./thunks";
 
-export const issuesSlice = createSlice({
+const issuesSlice = createSlice({
   name: "issues",
   initialState: {
+    status: { toDo: "initial", inProgress: "initial", done: "initial" },
+    limit: 30,
     allIssuesByRepo: {},
   },
-  reducers: {},
+  reducers: {
+    changeLimit: (state, action) => {
+      state.limit = action.payload;
+    },
+    changeStatus: (state, action) => {
+      const columnName = action.payload.columnName;
+      state.status[columnName] = action.payload.status;
+    },
+  },
   extraReducers: (builder) => {
-    builder.addCase(fetchIssuesData.fulfilled, (state, action) => {
-      const { name: repoName, issues } = action.payload;
+    builder.addCase(fetchIssuesDataByStatus.fulfilled, (state, action) => {
+      if (!action.payload) return;
+
+      const { name: repoName, issues, columnName } = action.payload;
 
       if (!issues) return;
 
-      state.allIssuesByRepo[repoName] = issues;
+      state.allIssuesByRepo[repoName] = state.allIssuesByRepo[repoName] || {};
+      state.allIssuesByRepo[repoName][columnName] = issues;
+
+      state.status[columnName] = "fulfilled";
     });
   },
 });
+
+export const { changeLimit, changeStatus } = issuesSlice.actions;
+export default issuesSlice;

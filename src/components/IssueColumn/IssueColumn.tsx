@@ -1,10 +1,11 @@
 import { Col, Typography, Flex } from "antd";
-import IssueCard from "../IssueCard";
+import IssueColumnContent from "./IssueColumnContent";
 
 import styles from "./issues-column.module.css";
 
 interface IssueColumnProps {
   title: string;
+  columnName: string;
   issues: Array<any>;
 }
 
@@ -12,8 +13,9 @@ const { Title } = Typography;
 
 const IssueColumn: React.FC<IssueColumnProps> = ({
   title,
+  columnName,
   issues = [],
-}: IssueColumnProps) => {
+}) => {
   return (
     <Col span={6} className={styles.column}>
       <Title level={4} className={styles["column__title"]}>
@@ -25,11 +27,7 @@ const IssueColumn: React.FC<IssueColumnProps> = ({
         vertical
         className={styles["column__content"]}
       >
-        {issues.length === 0 ? (
-          <Title level={4}>No issues</Title>
-        ) : (
-          issues.map((issue) => <IssueCard key={issue.id} {...issue} />)
-        )}
+        <IssueColumnContent columnName={columnName} issues={issues} />
       </Flex>
     </Col>
   );

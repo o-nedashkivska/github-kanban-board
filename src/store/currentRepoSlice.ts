@@ -4,7 +4,7 @@ import { fetchRepoData } from "./thunks";
 const initialStatusReason =
   "To view issues of any existing repository, please enter a valid repository url into the input above and click 'Load issues' button.";
 
-export const currentRepoSlice = createSlice({
+const currentRepoSlice = createSlice({
   name: "currentRepo",
   initialState: {
     status: "initial",
@@ -37,3 +37,5 @@ export const currentRepoSlice = createSlice({
     });
   },
 });
+
+export default currentRepoSlice;

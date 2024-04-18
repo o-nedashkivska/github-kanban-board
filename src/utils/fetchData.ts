@@ -4,9 +4,12 @@ const octokit = new Octokit({
   auth: "token",
 });
 
-const fetchData = async (url, options) => {
+export const fetchRepo = async (options) => {
   try {
-    const githubData = await octokit.request(url, options);
+    const githubData = await octokit.request(
+      "GET /repos/{owner}/{repo}",
+      options
+    );
 
     return githubData.data;
   } catch (e: any) {
@@ -20,10 +23,24 @@ const fetchData = async (url, options) => {
   }
 };
 
-export const fetchRepo = async (owner, repo) => {
-  return await fetchData("GET /repos/{owner}/{repo}", { owner, repo });
-};
+export const fetchIssues = async (options) => {
+  try {
+    const requestMethod = async (url, options) => {
+      if (options.per_page === Infinity)
+        return await octokit.paginate(url, { ...options, per_page: 100 });
+      else {
+        const { data } = await octokit.request(url, options);
+        return data;
+      }
+    };
 
-export const fetchIssues = async (owner, repo) => {
-  return await fetchData("GET /repos/{owner}/{repo}/issues", { owner, repo });
+    const githubData = await requestMethod(
+      "GET /repos/{owner}/{repo}/issues",
+      options
+    );
+
+    return githubData;
+  } catch (e: any) {
+    throw new Error(e.message || "Something went wrong. Please try again.");
+  }
 };

@@ -23,3 +23,18 @@ export const getCurrentIssuesSelector = (state) => {
 
   return currentIssues.allIssuesByRepo[currentRepoName];
 };
+
+export const getCurrentIssuesStatus = (state) => {
+  const currentRepo = getCurrentIssues(state);
+  return currentRepo.status;
+};
+
+export const getDataIsLoading = (state) => {
+  const repoStatus = getCurrentRepoStatus(state);
+  const issuesStatus = getCurrentIssuesStatus(state);
+
+  const issuesLoading = Object.values(issuesStatus).some(
+    (status) => status === "loading"
+  );
+  return issuesLoading || repoStatus === "loading";
+};

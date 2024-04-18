@@ -8,10 +8,7 @@ interface StatusIconProps extends React.HTMLProps<HTMLElement> {
   status: string;
 }
 
-const StatusIcon: React.FC<StatusIconProps> = ({
-  status,
-  ...props
-}: StatusIconProps) => {
+const StatusIcon: React.FC<StatusIconProps> = ({ status, ...props }) => {
   switch (status) {
     case "initial":
       return <BulbOutlined style={{ color: "#e67701" }} {...props} />;

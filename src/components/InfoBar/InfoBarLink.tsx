@@ -5,10 +5,7 @@ interface InfoBarLinkProps {
   href: string;
 }
 
-const InfoBarLink: React.FC<InfoBarLinkProps> = ({
-  text,
-  href,
-}: InfoBarLinkProps) => {
+const InfoBarLink: React.FC<InfoBarLinkProps> = ({ text, href }) => {
   const upCaseFirst = text[0].toUpperCase() + text.slice(1);
 
   return (

@@ -1,6 +1,8 @@
 import { useDispatch } from "react-redux";
-import { Flex, Input, Button, Tooltip } from "antd";
+import { Flex, Input, Tooltip } from "antd";
 import { fetchRepoData, AppDispatch } from "../../store";
+import SearchLimit from "./SearchLimit";
+import SearchButton from "./SearchButton";
 
 import useInput from "../../hooks/useInput";
 import { validateUrl } from "../../utils/validateUrl";
@@ -33,9 +35,8 @@ const SearchBar: React.FC = () => {
           onPressEnter={isValid && handleSubmit}
         />
       </Tooltip>
-      <Button size="large" disabled={!isValid} onClick={handleSubmit}>
-        Load Issues
-      </Button>
+      <SearchLimit />
+      <SearchButton disabled={!isValid} onClick={handleSubmit} />
     </Flex>
   );
 };
