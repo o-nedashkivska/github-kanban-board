@@ -4,12 +4,9 @@ const octokit = new Octokit({
   auth: "token",
 });
 
-export const fetchData = async (owner, repo) => {
+const fetchData = async (url, options) => {
   try {
-    const githubData = await octokit.request(
-      "GET /repos/{owner}/{repo}/issues",
-      { owner, repo }
-    );
+    const githubData = await octokit.request(url, options);
 
     return githubData.data;
   } catch (e: any) {
@@ -21,4 +18,12 @@ export const fetchData = async (owner, repo) => {
       console.log(e.message || "Something went wrong. Please try again.");
     }
   }
+};
+
+export const fetchRepo = async (owner, repo) => {
+  return await fetchData("GET /repos/{owner}/{repo}", { owner, repo });
+};
+
+export const fetchIssues = async (owner, repo) => {
+  return await fetchData("GET /repos/{owner}/{repo}/issues", { owner, repo });
 };

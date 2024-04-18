@@ -12,7 +12,7 @@ const { Title } = Typography;
 
 const IssueColumn: React.FC<IssueColumnProps> = ({
   title,
-  issues,
+  issues = [],
 }: IssueColumnProps) => {
   return (
     <Col span={6} className={styles.column}>

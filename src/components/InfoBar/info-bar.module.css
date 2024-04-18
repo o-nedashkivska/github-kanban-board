@@ -1,0 +1,11 @@
+.info-bar__status {
+  padding-top: 10px;
+}
+
+.info-bar__links > :first-child {
+  padding-left: 0;
+}
+
+.info-bar__icon {
+  padding-right: 5px;
+}

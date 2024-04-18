@@ -1,28 +1,39 @@
 import { useDispatch } from "react-redux";
-import { useState } from "react";
-import { fetchIssues, AppDispatch } from "../../store";
-import { Flex, Input, Button } from "antd";
+import { Flex, Input, Button, Tooltip } from "antd";
+import { fetchRepoData, AppDispatch } from "../../store";
+
+import useInput from "../../hooks/useInput";
+import { validateUrl } from "../../utils/validateUrl";
+import { parseUrl } from "../../utils/parseUrl";
 
 const SearchBar: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const [url, setUrl] = useState("");
+  const {
+    value: url,
+    error,
+    isValid,
+    onChange: setUrl,
+    onBlur,
+  } = useInput("", validateUrl);
 
-  const handleInputChange = (e) => {
-    setUrl(e.target.value);
-  };
-
-  const handleButtonClick = () => {
-    dispatch(fetchIssues({ owner: "facebook", repo: "react" }));
+  const handleSubmit = () => {
+    const { owner, repo } = parseUrl(url);
+    dispatch(fetchRepoData({ owner, repo }));
   };
 
   return (
     <Flex gap="large">
-      <Input
-        size="large"
-        placeholder="Enter repo URL"
-        onChange={handleInputChange}
-      />
-      <Button size="large" onClick={handleButtonClick}>
+      <Tooltip title={isValid ? "" : "Please enter a valid url."}>
+        <Input
+          size="large"
+          placeholder="Enter repo URL"
+          status={error && "error"}
+          onChange={setUrl}
+          onBlur={onBlur}
+          onPressEnter={isValid && handleSubmit}
+        />
+      </Tooltip>
+      <Button size="large" disabled={!isValid} onClick={handleSubmit}>
         Load Issues
       </Button>
     </Flex>

@@ -1,5 +1,6 @@
 import { Layout } from "antd";
 import SearchBar from "./SearchBar";
+import InfoBar from "./InfoBar";
 import IssuesColumns from "./IssuesColumns";
 
 import styles from "./app.module.css";
@@ -11,6 +12,7 @@ function App() {
     <Layout className={styles.layout}>
       <Header className={styles.header}>
         <SearchBar />
+        <InfoBar />
       </Header>
       <Content>
         <IssuesColumns />

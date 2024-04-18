@@ -1,24 +1,26 @@
 import { useMemo } from "react";
+import { useSelector } from "react-redux";
 import { Row } from "antd";
-import useOctokit from "../../hooks/useOctokit";
 import IssueColumn from "../IssueColumn";
 
+import { getCurrentIssuesSelector } from "../../store/selectors";
 import { filterIssues } from "../../utils/filterIssues";
 
 import styles from "./issues-columns.module.css";
 
 const IssuesColumns: React.FC = () => {
-  const { data } = useOctokit("facebook", "react");
+  const currentIssues = useSelector(getCurrentIssuesSelector);
 
-  const issues = useMemo(() => data && filterIssues(data), [data]);
-
-  if (!data) return;
+  const filteredIssues = useMemo(
+    () => currentIssues && filterIssues(currentIssues),
+    [currentIssues]
+  );
 
   return (
     <Row justify="space-evenly" className={styles.columns}>
-      <IssueColumn title="ToDo" issues={issues[0]} />
-      <IssueColumn title="In Progress" issues={issues[1]} />
-      <IssueColumn title="Done" issues={issues[2]} />
+      <IssueColumn title="ToDo" issues={filteredIssues?.[0]} />
+      <IssueColumn title="In Progress" issues={filteredIssues?.[1]} />
+      <IssueColumn title="Done" issues={filteredIssues?.[2]} />
     </Row>
   );
 };
