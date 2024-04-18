@@ -11,11 +11,11 @@ const fetchData = async (url, options) => {
     return githubData.data;
   } catch (e: any) {
     if (e.status === 404) {
-      console.log(
+      throw new Error(
         "There is no such owner with the specified repository. Please enter valid repository url."
       );
     } else {
-      console.log(e.message || "Something went wrong. Please try again.");
+      throw new Error(e.message || "Something went wrong. Please try again.");
     }
   }
 };

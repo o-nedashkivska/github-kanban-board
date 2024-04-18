@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { Flex, Typography } from "antd";
 import { StarFilled } from "@ant-design/icons";
 import InfoBarLink from "./InfoBarLink";
-import InfoBarStatus from "./InfoBarStatus";
+import InfoBarStatus from "../InfoBarStatus";
 
 import { getCurrentRepo } from "../../store/selectors";
 
@@ -12,9 +12,9 @@ const { Text } = Typography;
 const githubUrl = "https://github.com";
 
 const InfoBar: React.FC = () => {
-  const { name: currentRepoName, stars } = useSelector(getCurrentRepo);
+  const { name: currentRepoName, stars, status } = useSelector(getCurrentRepo);
 
-  if (!currentRepoName) {
+  if (status !== "fulfilled") {
     return <InfoBarStatus />;
   }
 
