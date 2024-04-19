@@ -1,5 +1,6 @@
 import { Col, Typography, Flex } from "antd";
 import IssueColumnContent from "./IssueColumnContent";
+import { Droppable } from "react-beautiful-dnd";
 
 import styles from "./issues-column.module.css";
 
@@ -21,14 +22,24 @@ const IssueColumn: React.FC<IssueColumnProps> = ({
       <Title level={4} className={styles["column__title"]}>
         {title}
       </Title>
-      <Flex
-        gap="middle"
-        align="center"
-        vertical
-        className={styles["column__content"]}
-      >
-        <IssueColumnContent columnName={columnName} issues={issues} />
-      </Flex>
+      <Droppable droppableId={columnName}>
+        {(provided, snapshot) => (
+          <Flex
+            ref={provided.innerRef}
+            {...provided.droppableProps}
+            gap="middle"
+            align="center"
+            vertical
+            className={styles["column__content"]}
+            style={{
+              backgroundColor: snapshot.isDraggingOver && "#69b1ff",
+            }}
+          >
+            <IssueColumnContent columnName={columnName} issues={issues} />
+            {provided.placeholder}
+          </Flex>
+        )}
+      </Droppable>
     </Col>
   );
 };

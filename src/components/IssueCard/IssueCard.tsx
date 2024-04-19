@@ -1,11 +1,13 @@
-import { useCallback } from "react";
+import { useMemo } from "react";
 import { Card, Flex, Typography } from "antd";
+import { Draggable } from "react-beautiful-dnd";
 
-import { countDaysFromDate } from "../../utils/countDaysFromDate";
+import { formatCreatedAt } from "../../utils/formatCreatedAt";
 
 import styles from "./issue-card.module.css";
 
 interface IssueCardProps {
+  index: number;
   title: string;
   number: number;
   comments: number;
@@ -17,30 +19,39 @@ const { Text } = Typography;
 
 const IssueCard: React.FC = ({
   title,
+  index,
   number,
   comments,
   created_at,
 }: IssueCardProps) => {
-  const activeTime = countDaysFromDate(created_at);
-
-  const formatActiveTime = useCallback(() => {
-    if (!activeTime) return "opened today";
-
-    return `opened ${activeTime} day ${activeTime === 1 ? "" : "s"} ago`;
-  }, [activeTime]);
+  const activeTime = useMemo(() => formatCreatedAt(created_at), [created_at]);
 
   return (
-    <Card size="small" className={styles.card}>
-      <Flex vertical>
-        <Text>{title}</Text>
-        <Text type="secondary">
-          #{number} {formatActiveTime()}
-        </Text>
-        <Text type="secondary">
-          {"issue admin"} | Comments: {comments}
-        </Text>
-      </Flex>
-    </Card>
+    <Draggable draggableId={created_at} index={index}>
+      {(provided, snapshot) => (
+        <Card
+          size="small"
+          ref={provided.innerRef}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+          className={styles.card}
+          style={{
+            ...provided.draggableProps.style,
+            backgroundColor: snapshot.isDragging && "#e6f4ff",
+          }}
+        >
+          <Flex vertical>
+            <Text>{title}</Text>
+            <Text type="secondary">
+              #{number} {activeTime}
+            </Text>
+            <Text type="secondary">
+              {"Admin"} | Comments: {comments}
+            </Text>
+          </Flex>
+        </Card>
+      )}
+    </Draggable>
   );
 };
 

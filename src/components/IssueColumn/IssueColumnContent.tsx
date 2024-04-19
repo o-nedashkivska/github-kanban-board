@@ -26,7 +26,9 @@ const IssueColumnContent: React.FC<IssueColumnContentProps> = ({
       {issues.length === 0 ? (
         <Title level={4}>No issues</Title>
       ) : (
-        issues.map((issue) => <IssueCard key={issue.id} {...issue} />)
+        issues.map((issue, index) => (
+          <IssueCard key={issue.id} index={index} {...issue} />
+        ))
       )}
     </>
   );

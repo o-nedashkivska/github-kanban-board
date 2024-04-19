@@ -15,30 +15,6 @@
   position: relative;
 }
 
-.column__content::before {
-  position: absolute;
-  top: 1px;
-  bottom: 1px;
-  left: -3px;
-  right: -3px;
-  display: block;
-  border: 1px solid black;
-  content: "";
-  transform: rotate(0.1deg);
-}
-
-.column__content::after {
-  position: absolute;
-  top: -2px;
-  bottom: -2px;
-  left: 1px;
-  right: 1px;
-  display: block;
-  border: 1px solid black;
-  content: "";
-  transform: rotate(-0.3deg);
-}
-
 .loader {
   margin-top: 50px;
 }
