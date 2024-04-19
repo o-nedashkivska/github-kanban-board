@@ -1,6 +1,6 @@
 export const getCurrentRepo = (state) => state.currentRepo;
 
-const getCurrentRepoName = (state) => {
+export const getCurrentRepoName = (state) => {
   const currentRepo = getCurrentRepo(state);
   return currentRepo.name;
 };
@@ -15,17 +15,17 @@ export const getCurrentRepoStatusReason = (state) => {
   return currentRepo.statusReason;
 };
 
-const getCurrentIssues = (state) => state.issues;
+const getIssues = (state) => state.issues;
 
-export const getCurrentIssuesSelector = (state) => {
+export const getCurrentIssues = (state) => {
   const currentRepoName = getCurrentRepoName(state);
-  const currentIssues = getCurrentIssues(state);
+  const currentIssues = getIssues(state);
 
   return currentIssues.allIssuesByRepo[currentRepoName];
 };
 
 export const getCurrentIssuesStatus = (state) => {
-  const currentRepo = getCurrentIssues(state);
+  const currentRepo = getIssues(state);
   return currentRepo.status;
 };
 

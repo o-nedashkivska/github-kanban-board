@@ -12,9 +12,23 @@ const issuesSlice = createSlice({
     changeLimit: (state, action) => {
       state.limit = action.payload;
     },
-    changeStatus: (state, action) => {
+    changeLoadingStatus: (state, action) => {
       const columnName = action.payload.columnName;
       state.status[columnName] = action.payload.status;
+    },
+    changeIssueStatus: (state, action) => {
+      const { repoName, source, destination } = action.payload;
+      const { droppableId: oldColumn, index: oldIndex } = source;
+      const { droppableId: newColumn, index: newIndex } = destination;
+
+      const [deletedElement] = state.allIssuesByRepo[repoName][
+        oldColumn
+      ].splice(oldIndex, 1);
+      state.allIssuesByRepo[repoName][newColumn].splice(
+        newIndex,
+        0,
+        deletedElement
+      );
     },
   },
   extraReducers: (builder) => {
@@ -33,5 +47,6 @@ const issuesSlice = createSlice({
   },
 });
 
-export const { changeLimit, changeStatus } = issuesSlice.actions;
+export const { changeLimit, changeLoadingStatus, changeIssueStatus } =
+  issuesSlice.actions;
 export default issuesSlice;

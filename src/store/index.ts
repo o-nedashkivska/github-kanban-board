@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import currentRepoSlice from "./currentRepoSlice";
-import issuesSlice, { changeLimit } from "./issuesSlice";
+import issuesSlice, { changeLimit, changeIssueStatus } from "./issuesSlice";
 import { fetchRepoData } from "./thunks";
 
 const store = configureStore({
@@ -10,7 +10,7 @@ const store = configureStore({
   },
 });
 
-export { fetchRepoData, changeLimit };
+export { fetchRepoData, changeLimit, changeIssueStatus };
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

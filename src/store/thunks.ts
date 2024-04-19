@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { RootState } from "./index";
 import { fetchRepo, fetchIssues } from "../utils/fetchData";
-import { changeStatus } from "./issuesSlice";
+import { changeLoadingStatus } from "./issuesSlice";
 
 type IssueStatus = "toDo" | "inProgress" | "done";
 
@@ -39,7 +39,7 @@ export const fetchIssuesDataByStatus = createAsyncThunk<
 >(
   "issues/fetchIssues",
   async ({ owner, repo, columnName }, { getState, dispatch }) => {
-    dispatch(changeStatus({ columnName, status: "loading" }));
+    dispatch(changeLoadingStatus({ columnName, status: "loading" }));
 
     const state = getState() as RootState;
 
