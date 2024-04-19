@@ -52,7 +52,7 @@ export const fetchIssuesDataByStatus = createAsyncThunk<
         additionalOptions.assignee = "none";
         break;
       case "inProgress":
-        additionalOptions.assignee = "none";
+        additionalOptions.assignee = "*";
         break;
       case "done":
         additionalOptions.state = "closed";
