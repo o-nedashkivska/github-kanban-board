@@ -14,5 +14,5 @@ export const formatCreatedAt = (createdAt) => {
 
   if (!activeTime) return "opened today";
 
-  return `opened ${activeTime} day ${activeTime === 1 ? "" : "s"} ago`;
+  return `opened ${activeTime} day${activeTime === 1 ? "" : "s"} ago`;
 };
