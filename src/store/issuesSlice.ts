@@ -1,12 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchIssuesDataByStatus } from "./thunks";
 
+interface IssuesByStatus {
+  toDo: Array<any>;
+  inProgress: Array<any>;
+  done: Array<any>;
+}
+
 const issuesSlice = createSlice({
   name: "issues",
   initialState: {
     status: { toDo: "initial", inProgress: "initial", done: "initial" },
     limit: 30,
-    allIssuesByRepo: {},
+    allIssuesByRepo: {} as Record<string, IssuesByStatus>,
   },
   reducers: {
     changeLimit: (state, action) => {
@@ -39,7 +45,11 @@ const issuesSlice = createSlice({
 
       if (!issues) return;
 
-      state.allIssuesByRepo[repoName] = state.allIssuesByRepo[repoName] || {};
+      state.allIssuesByRepo[repoName] = state.allIssuesByRepo[repoName] || {
+        toDo: [],
+        inProgress: [],
+        done: [],
+      };
       state.allIssuesByRepo[repoName][columnName] = issues;
 
       state.status[columnName] = "fulfilled";
