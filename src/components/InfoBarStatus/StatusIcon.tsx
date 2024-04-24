@@ -5,17 +5,21 @@ import {
 } from "@ant-design/icons";
 
 interface StatusIconProps extends React.HTMLProps<HTMLElement> {
-  status: string;
+  status?: string;
 }
 
-const StatusIcon: React.FC<StatusIconProps> = ({ status, ...props }) => {
+const StatusIcon: React.FC<StatusIconProps> = ({
+  status = "initial",
+  ...props
+}) => {
   switch (status) {
-    case "initial":
-      return <BulbOutlined style={{ color: "#e67701" }} {...props} />;
     case "rejected":
       return <WarningOutlined style={{ color: "#ff4d4f" }} {...props} />;
     case "loading":
       return <LoadingOutlined style={{ color: "#52c41a" }} {...props} />;
+    case "initial":
+    default:
+      return <BulbOutlined style={{ color: "#e67701" }} {...props} />;
   }
 };
 

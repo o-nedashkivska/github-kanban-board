@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InfoBarLink matches snapshot 1`] = `
+<DocumentFragment>
+  <a
+    class="ant-btn css-dev-only-do-not-override-1kuana8 ant-btn-link ant-btn-lg"
+    href="https://github.com/facebook"
+    tabindex="0"
+    target="_blank"
+  >
+    <span>
+      Facebook
+    </span>
+  </a>
+</DocumentFragment>
+`;
