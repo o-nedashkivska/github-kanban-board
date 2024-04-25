@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IssuesColumns matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="ant-row ant-row-space-evenly columns css-dev-only-do-not-override-1kuana8"
+  >
+    <div
+      class="ant-col ant-col-6 column css-dev-only-do-not-override-1kuana8"
+    >
+      <h4
+        class="ant-typography column__title css-dev-only-do-not-override-1kuana8"
+      >
+        ToDo
+      </h4>
+      <div
+        class="column__content ant-flex css-dev-only-do-not-override-1kuana8 ant-flex-align-center ant-flex-gap-middle ant-flex-vertical"
+      >
+        <h4
+          class="ant-typography css-dev-only-do-not-override-1kuana8"
+        >
+          No issues
+        </h4>
+      </div>
+    </div>
+    <div
+      class="ant-col ant-col-6 column css-dev-only-do-not-override-1kuana8"
+    >
+      <h4
+        class="ant-typography column__title css-dev-only-do-not-override-1kuana8"
+      >
+        In Progress
+      </h4>
+      <div
+        class="column__content ant-flex css-dev-only-do-not-override-1kuana8 ant-flex-align-center ant-flex-gap-middle ant-flex-vertical"
+      >
+        <h4
+          class="ant-typography css-dev-only-do-not-override-1kuana8"
+        >
+          No issues
+        </h4>
+      </div>
+    </div>
+    <div
+      class="ant-col ant-col-6 column css-dev-only-do-not-override-1kuana8"
+    >
+      <h4
+        class="ant-typography column__title css-dev-only-do-not-override-1kuana8"
+      >
+        Done
+      </h4>
+      <div
+        class="column__content ant-flex css-dev-only-do-not-override-1kuana8 ant-flex-align-center ant-flex-gap-middle ant-flex-vertical"
+      >
+        <h4
+          class="ant-typography css-dev-only-do-not-override-1kuana8"
+        >
+          No issues
+        </h4>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
