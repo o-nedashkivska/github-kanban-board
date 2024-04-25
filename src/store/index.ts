@@ -9,12 +9,10 @@ export const reducer = {
   issues: issuesSlice.reducer,
 };
 
-const middleware = (getDefaultMiddleware) =>
-  getDefaultMiddleware().prepend(listenerMiddleware.middleware);
-
 const store = configureStore({
   reducer,
-  middleware,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().prepend(listenerMiddleware.middleware),
 });
 
 export { fetchRepoData, changeLimit, changeIssueStatus };

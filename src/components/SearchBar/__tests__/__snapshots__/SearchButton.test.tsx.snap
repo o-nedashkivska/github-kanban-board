@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchButton displays correct button when status is loading matches snapshot 1`] = `
+<DocumentFragment>
+  <button
+    class="ant-btn css-dev-only-do-not-override-1kuana8 ant-btn-default ant-btn-lg"
+    disabled=""
+    type="button"
+  >
+    <span>
+      Load Issues
+    </span>
+  </button>
+</DocumentFragment>
+`;
+
+exports[`SearchButton displays correct button when status is other than loading matches snapshot 1`] = `
+<DocumentFragment>
+  <button
+    class="ant-btn css-dev-only-do-not-override-1kuana8 ant-btn-default ant-btn-lg"
+    disabled=""
+    type="button"
+  >
+    <span>
+      Load Issues
+    </span>
+  </button>
+</DocumentFragment>
+`;

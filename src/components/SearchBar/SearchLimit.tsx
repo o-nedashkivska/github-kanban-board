@@ -8,6 +8,13 @@ import styles from "./search-bar.module.css";
 const tooltipText =
   "NOTE: 'No limit' option will not apply on 'Done' column due to performance reasons. Value 100 will be used instead.";
 
+export const limitOptions = [
+  { value: "30", label: "30 issues per column" },
+  { value: "50", label: "50 issues per column" },
+  { value: "100", label: "100 issues per column" },
+  { value: "Infinity", label: "No limit per column" },
+];
+
 const SearchLimit = () => {
   const isLoading = useSelector(getDataIsLoading);
   const dispatch = useDispatch();
@@ -23,12 +30,7 @@ const SearchLimit = () => {
         defaultValue="30"
         className={styles["search-limit"]}
         onChange={handleChange}
-        options={[
-          { value: "30", label: "30 issues per column" },
-          { value: "50", label: "50 issues per column" },
-          { value: "100", label: "100 issues per column" },
-          { value: "Infinity", label: "No limit per column" },
-        ]}
+        options={limitOptions}
         size="large"
       />
     </Tooltip>
