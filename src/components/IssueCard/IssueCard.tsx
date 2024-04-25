@@ -11,19 +11,22 @@ interface IssueCardProps {
   title: string;
   number: number;
   comments: number;
-  assignee: string;
-  created_at: string;
+  assignee: null | Partial<{ login: string }>;
+  created_at: Date;
 }
 
 const { Text } = Typography;
 
-const IssueCard: React.FC = ({
+const IssueCard: React.FC<IssueCardProps> = ({
   title,
   index,
   number,
   comments,
+  assignee,
   created_at,
-}: IssueCardProps) => {
+}) => {
+  assignee = assignee ?? { login: "No assignee" };
+
   const activeTime = useMemo(() => formatCreatedAt(created_at), [created_at]);
 
   return (
@@ -46,7 +49,7 @@ const IssueCard: React.FC = ({
               #{number} {activeTime}
             </Text>
             <Text type="secondary">
-              {"Admin"} | Comments: {comments}
+              {assignee.login} | Comments: {comments}
             </Text>
           </Flex>
         </Card>
