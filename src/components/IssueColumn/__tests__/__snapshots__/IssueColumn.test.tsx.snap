@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IssueColumn displays correct title 1`] = `
+<DocumentFragment>
+  <div
+    class="ant-col ant-col-6 column css-dev-only-do-not-override-1kuana8"
+  >
+    <h4
+      class="ant-typography column__title css-dev-only-do-not-override-1kuana8"
+    >
+      ToDo
+    </h4>
+    <div
+      class="column__content ant-flex css-dev-only-do-not-override-1kuana8 ant-flex-align-center ant-flex-gap-middle ant-flex-vertical"
+    >
+      <h4
+        class="ant-typography css-dev-only-do-not-override-1kuana8"
+      >
+        No issues
+      </h4>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`IssueColumn passes issues to child component 1`] = `
+<DocumentFragment>
+  <div
+    class="ant-col ant-col-6 column css-dev-only-do-not-override-1kuana8"
+  >
+    <h4
+      class="ant-typography column__title css-dev-only-do-not-override-1kuana8"
+    >
+      ToDo
+    </h4>
+    <div
+      class="column__content ant-flex css-dev-only-do-not-override-1kuana8 ant-flex-align-center ant-flex-gap-middle ant-flex-vertical"
+    >
+      <div
+        class="ant-card ant-card-bordered ant-card-small card css-dev-only-do-not-override-1kuana8"
+      >
+        <div
+          class="ant-card-body"
+        >
+          <div
+            class="ant-flex css-dev-only-do-not-override-1kuana8 ant-flex-align-stretch ant-flex-vertical"
+          >
+            <span
+              class="ant-typography css-dev-only-do-not-override-1kuana8"
+            >
+              Title 1
+            </span>
+            <span
+              class="ant-typography ant-typography-secondary css-dev-only-do-not-override-1kuana8"
+            >
+              #1011 opened today
+            </span>
+            <span
+              class="ant-typography ant-typography-secondary css-dev-only-do-not-override-1kuana8"
+            >
+              No assignee | Comments: 11
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        class="ant-card ant-card-bordered ant-card-small card css-dev-only-do-not-override-1kuana8"
+      >
+        <div
+          class="ant-card-body"
+        >
+          <div
+            class="ant-flex css-dev-only-do-not-override-1kuana8 ant-flex-align-stretch ant-flex-vertical"
+          >
+            <span
+              class="ant-typography css-dev-only-do-not-override-1kuana8"
+            >
+              Title 2
+            </span>
+            <span
+              class="ant-typography ant-typography-secondary css-dev-only-do-not-override-1kuana8"
+            >
+              #2022 opened today
+            </span>
+            <span
+              class="ant-typography ant-typography-secondary css-dev-only-do-not-override-1kuana8"
+            >
+              No assignee | Comments: 22
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
