@@ -1,11 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchIssuesDataByStatus } from "./thunks";
+import { resolveIssuesList } from "../utils/localStorageUtils";
 
 interface IssuesByStatus {
   toDo: Array<any>;
   inProgress: Array<any>;
   done: Array<any>;
 }
+
+const initialAllIssues = {
+  toDo: [],
+  inProgress: [],
+  done: [],
+};
 
 const issuesSlice = createSlice({
   name: "issues",
@@ -45,12 +52,15 @@ const issuesSlice = createSlice({
 
       if (!issues) return;
 
-      state.allIssuesByRepo[repoName] = state.allIssuesByRepo[repoName] || {
-        toDo: [],
-        inProgress: [],
-        done: [],
-      };
-      state.allIssuesByRepo[repoName][columnName] = issues;
+      state.allIssuesByRepo[repoName] =
+        state.allIssuesByRepo[repoName] || initialAllIssues;
+
+      const resolvedIssues = resolveIssuesList(repoName, columnName, issues);
+
+      state.allIssuesByRepo[repoName][columnName] = resolvedIssues.slice(
+        0,
+        state.limit
+      );
 
       state.status[columnName] = "fulfilled";
     });

@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { RootState } from "./index";
 import { fetchRepo, fetchIssues } from "../utils/fetchData";
+import { getRemovedIssuesByColumn } from "../utils/localStorageUtils";
 import { changeLoadingStatus } from "./issuesSlice";
 
 type IssueStatus = "toDo" | "inProgress" | "done";
@@ -43,8 +44,13 @@ export const fetchIssuesDataByStatus = createAsyncThunk<
 
     const state = getState() as RootState;
 
+    const { count: deletedIssuesCount } = await getRemovedIssuesByColumn(
+      state.currentRepo.name,
+      columnName
+    );
+
     let additionalOptions: Options = {
-      per_page: state.issues.limit,
+      per_page: state.issues.limit + deletedIssuesCount,
     };
 
     switch (columnName) {
@@ -57,7 +63,7 @@ export const fetchIssuesDataByStatus = createAsyncThunk<
       case "done":
         additionalOptions.state = "closed";
         if (additionalOptions.per_page === Infinity) {
-          additionalOptions.per_page = 100;
+          additionalOptions.per_page = 250 + deletedIssuesCount;
         }
     }
 

@@ -6,7 +6,7 @@ import { getDataIsLoading } from "../../store/selectors";
 import styles from "./search-bar.module.css";
 
 const tooltipText =
-  "NOTE: 'No limit' option will not apply on 'Done' column due to performance reasons. Value 100 will be used instead.";
+  "NOTE: 'No limit' option will not apply on 'Done' column due to performance reasons. Value 250 will be used instead.";
 
 export const limitOptions = [
   { value: "30", label: "30 issues per column" },
